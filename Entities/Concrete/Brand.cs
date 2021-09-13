@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Entities.Concrete
 {
     public class Brand:IEntity
     {
-        public int id { get; set; }
+        public int brandId { get; set; }
         public string name { get; set; }
     }
 }

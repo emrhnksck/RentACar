@@ -9,8 +9,12 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDao());
-            Console.WriteLine(carManager.getCarsByColorId(1));
+            CarManager manager = new CarManager(new EfCarDao());
+
+            foreach (var car in manager.GetCarDetails())
+            {
+                Console.WriteLine(car.carName + "  " + car.brandName + " " + car.colorName);
+            }
         }
     }
 }

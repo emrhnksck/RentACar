@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,11 @@ namespace Business.Concrete
         public Car getById(int id)
         {
             return carDao.get(c=>c.id==id);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return carDao.getCarDetails();
         }
 
         public List<Car> getCarsByBrandId(int brandId)

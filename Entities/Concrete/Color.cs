@@ -1,4 +1,4 @@
-﻿using Entities.Abstract;
+﻿using Core.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Entities.Concrete
 {
     public class Color:IEntity
     {
-        public int id { get; set; }
+        public int colorId { get; set; }
         public string name { get; set; }
     }
 }

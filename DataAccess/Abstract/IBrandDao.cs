@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Abstract;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IBrandRepository:IEntityRepository<Brand>
+    public interface IBrandDao:IEntityRepository<Brand>
     {
     }
 }
