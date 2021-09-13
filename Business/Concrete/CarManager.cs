@@ -20,7 +20,14 @@ namespace Business.Concrete
 
         public void add(Car car)
         {
-            carDao.add(car);
+            if(car.description.Length > 2 && car.dailyPrice > 0)
+            {
+                carDao.add(car);
+            }
+            else
+            {
+                Console.WriteLine("Car couldn't add please check your informations");
+            }
         }
 
         public void delete(Car car)
@@ -35,7 +42,17 @@ namespace Business.Concrete
 
         public Car getById(int id)
         {
-            return carDao.getById(id);
+            return carDao.get(c=>c.id==id);
+        }
+
+        public List<Car> getCarsByBrandId(int brandId)
+        {
+            return carDao.getAll(c => c.brandId == brandId);
+        }
+
+        public List<Car> getCarsByColorId(int colorId)
+        {
+            return carDao.getAll(c => c.colorId == colorId);
         }
 
         public void update(Car car)

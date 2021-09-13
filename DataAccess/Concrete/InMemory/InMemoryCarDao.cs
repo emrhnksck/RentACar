@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,7 +37,12 @@ namespace DataAccess.Abstract.InMemory
             cars.Remove(deleteCar);
         }
 
-        public List<Car> getAll()
+        public Car get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Car> getAll(Expression<Func<Car, bool>> filter = null)
         {
             return cars;
         }
