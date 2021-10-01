@@ -9,12 +9,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager manager = new CarManager(new EfCarDao());
+            RentalManager manager = new RentalManager(new EfRentalDao());
 
-            foreach (var car in manager.GetCarDetails())
-            {
-                Console.WriteLine(car.carName + "  " + car.brandName + " " + car.colorName);
+            var result = manager.getRentalDetails();
+
+
+                foreach (var rental in result.data)
+                {
+                    Console.WriteLine(rental.CarName + " " + rental.CustomerName + " " + rental.RentDate);
+                }
             }
+            
+            
         }
     }
-}
+

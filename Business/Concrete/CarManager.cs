@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -19,51 +21,54 @@ namespace Business.Concrete
             this.carDao = carDao;
         }
 
-        public void add(Car car)
+        public IResult add(Car car)
         {
             if(car.description.Length > 2 && car.dailyPrice > 0)
             {
                 carDao.add(car);
+                return new SuccesResult(Messages.carAdded);
             }
             else
             {
-                Console.WriteLine("Car couldn't add please check your informations");
+                return new ErrorResult(Messages.carCouldntAdd);
             }
         }
 
-        public void delete(Car car)
+        public IResult delete(Car car)
         {
             carDao.delete(car);
+            return new SuccesResult(Messages.carDeleted);
         }
 
-        public List<Car> getAll()
+        public IDataResult<List<Car>> getAll()
         {
-            return carDao.getAll();
+            return new SuccessDataResult<List<Car>>(carDao.getAll(),Messages.getAllCars);
         }
 
-        public Car getById(int id)
+        public IDataResult<Car> getById(int id)
         {
-            return carDao.get(c=>c.id==id);
+            return new SuccessDataResult<Car>(carDao.get(c=>c.id==id));
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return carDao.getCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(carDao.getCarDetails());
         }
 
-        public List<Car> getCarsByBrandId(int brandId)
+        public IDataResult<List<Car>> getCarsByBrandId(int brandId)
         {
-            return carDao.getAll(c => c.brandId == brandId);
+            return new SuccessDataResult<List<Car>>(carDao.getAll(c => c.brandId == brandId));
         }
 
-        public List<Car> getCarsByColorId(int colorId)
+        public IDataResult<List<Car>> getCarsByColorId(int colorId)
         {
-            return carDao.getAll(c => c.colorId == colorId);
+            return new SuccessDataResult<List<Car>>(carDao.getAll(c => c.colorId == colorId));
         }
 
-        public void update(Car car)
+        public IResult update(Car car)
         {
             carDao.update(car);
+            return new SuccesResult();
         }
     }
 }
